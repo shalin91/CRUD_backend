@@ -2,20 +2,17 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 
-const userSchema = new mongoose.Schema(
+const projectSchema = new mongoose.Schema(
   {
    
     name: {
       type: String,
     },
-    email: {
-      type: String,  
+    startDate:{
+        type: Date
     },
-    phone: {
-      type: String,
-    },
-    birthDate:{
-      type : Date
+    endDate:{
+        type : Date
     },
     isDeleted: {
       type: Boolean,
@@ -28,8 +25,6 @@ const userSchema = new mongoose.Schema(
 );
 
 
+const Project = mongoose.model("project", projectSchema);
 
-
-const User = mongoose.model("User", userSchema);
-
-module.exports = User;
+module.exports = Project;

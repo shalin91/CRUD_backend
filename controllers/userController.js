@@ -1,11 +1,11 @@
 const express = require("express");
 const User = require("../models/User");
 
-// Add Location
+// Add User
 const addUser = async (req, res) => {
     try {
-      const { name, email , password, isActive } = req.body;
-      const newUser = new User({ name, email, password, isActive });
+      const { name, email , phone, birthDate , isDeleted } = req.body;
+      const newUser = new User({ name, email, phone, birthDate ,isDeleted  });
       const savedUser = await newUser.save();
       res.json({success : true , data : savedUser});
     } catch (error) {
@@ -13,15 +13,15 @@ const addUser = async (req, res) => {
     }
   };
   
-  // Edit Location
+  // Edit User
   const editUser = async (req, res) => {
     try {
       const  id  = req.params.id;
-      const { name, email , password, isActive } = req.body;
+      const {  name, email , phone, birthDate , isDeleted  } = req.body;
   
       const updatedUser = await User.findByIdAndUpdate(
         id,
-        { name, email , password, isActive },
+        {  name, email , phone, birthDate , isDeleted  },
         { new: true }
       );
   
@@ -35,11 +35,11 @@ const addUser = async (req, res) => {
     }
   };
   
-  // Delete Location
+  // Delete User
   const deleteUser = async (req, res) => {
     try {
       const  id  = req.params.id;
-      const deletedUser = await User.findByIdAndDelete(id);
+      const deletedUser = await User.findByIdAndUpdate(id, { isDeleted: true }, { new: true });
   
       if (!deletedUser) {
         return res.status(404).json({ error: 'User not found' });
@@ -51,7 +51,7 @@ const addUser = async (req, res) => {
     }
   };
   
-  // Get All Locations
+  // Get All User
   const getAllUsers = async (req, res) => {
     try {
       const users = await User.find().exec();
@@ -61,14 +61,14 @@ const addUser = async (req, res) => {
     }
   };
   
-  // Get Specific Location
+  // Get Specific User
   const getSpecificUser = async (req, res) => {
     try {
       const  id  = req.params.id;
       const user = await User.findById(id);
   
       if (!user) {
-        return res.status(404).json({ error: 'Location not found' });
+        return res.status(404).json({ error: 'User not found' });
       }
   
       res.json({success : true , data:user});

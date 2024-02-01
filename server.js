@@ -3,6 +3,8 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const connectToMongo = require("./db");
 const userRoutes = require("./routes/userRoutes");
+const projectRoutes = require("./routes/projectRoutes");
+const taskRoutes = require("./routes/taskRoutes");
 const cookieParser = require("cookie-parser");
 const helmet = require("helmet");
 const morgan = require("morgan");
@@ -60,6 +62,8 @@ app.use(cors());
 
 // Routes Middleware
 app.use("/user" , userRoutes)
+app.use("/project" , projectRoutes)
+app.use("/task" ,taskRoutes)
 
 // O5sjrqzt4ioURKou
 
