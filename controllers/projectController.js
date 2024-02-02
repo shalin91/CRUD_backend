@@ -26,7 +26,7 @@ const addProject = async (req, res) => {
       );
   
       if (!updatedProject) {
-        return res.status(404).json({ error: 'User not found' });
+        return res.status(404).json({ error: 'project not found' });
       }
   
       res.json({success:true, data : updatedProject});
@@ -42,7 +42,7 @@ const addProject = async (req, res) => {
       const deletedProject = await Project.findByIdAndUpdate(id, { isDeleted: true }, { new: true });
   
       if (!deletedProject) {
-        return res.status(404).json({ error: 'User not found' });
+        return res.status(404).json({ error: 'project not found' });
       }
   
       res.json({success : true , msg:"Deleted Successfully"});
@@ -68,7 +68,7 @@ const addProject = async (req, res) => {
       const project = await Project.findById(id);
   
       if (!project) {
-        return res.status(404).json({ error: 'User not found' });
+        return res.status(404).json({ error: 'project not found' });
       }
   
       res.json({success : true , data:project});
