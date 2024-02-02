@@ -51,7 +51,7 @@ const addTask = async (req, res) => {
       const  id  = req.params.id;
       const deletedTask = await Task.findByIdAndUpdate(id, { isDeleted: true }, { new: true });
   
-      if (!deletedProject) {
+      if (!deletedTask) {
         return res.status(404).json({ error: 'task not found' });
       }
   
